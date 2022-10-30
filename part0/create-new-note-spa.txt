@@ -1,0 +1,38 @@
+title 0.6 single page app
+
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa
+Server -> Browser: HTML-code
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+Server -> Browser:main.css
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+Server -> Browser: spa.js
+
+note over Browser
+Browser starts executing js-code
+that requests JSON data from server
+end note
+
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+
+Server -> Browser: requested JSON data
+note over Browser
+Browser executes the event handler
+that renders notes to display
+end note
+
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/favicon.ico
+Server->Browser: favicon.icon
+
+note left of Browser
+User clicks on Save button to add a new note.
+The note is added to list of notes,browser renders new note,
+sends request to server to create new resource.
+end note
+Browser->Server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+
+note right of Server
+Server insert new note to data.json.
+No redirect needed
+end note
+
+Server -> Browser: Server succesfully creates new resource sent from Browser, responses with http code 201

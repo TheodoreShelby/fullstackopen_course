@@ -1,0 +1,39 @@
+
+title 0.4 New note
+
+Browser->Server: HTTP GET  https://studies.cs.helsinki.fi/exampleapp/notes
+Server -> Browser: HTML-code
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+Server -> Browser:main.css
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+
+Server -> Browser: main.js
+note over Browser
+Browser starts executing js-code
+that requests JSON data from server
+end note
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+
+Server -> Browser: requested JSON data
+note over Browser
+Browser executes the event handler
+that renders notes to display
+end note
+
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/favicon.ico
+Server->Browser: favicon.icon
+
+note left of Browser
+User clicks on Save button to add a new note
+end note
+Browser->Server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
+
+note right of Server
+Server insert new note,
+then ask Browser to redirect to
+https://studies.cs.helsinki.fi/exampleapp/notes
+end note
+Server->Browser: HTTP 302, asks Browser redirect to https://studies.cs.helsinki.fi/exampleapp/notes
+
+Browser->Server: HTTP GET  https://studies.cs.helsinki.fi/exampleapp/notes
+
