@@ -1,0 +1,44 @@
+const Header = ({ course }) => <h1>{course}</h1>;
+
+const Part = (singleItem) => (
+  <p key={singleItem.part}>
+    {singleItem.part} {singleItem.exercises}
+  </p>
+);
+
+const Content = ({ content }) => (
+  <>
+    {content.map((item) => (
+      <Part singleItem={item} />
+    ))}
+  </>
+);
+
+const Total = ({ inputNumber }) => {
+  const total = inputNumber
+    .map((item) => item.exercises)
+    .reduce((prev, next) => prev + next, 0);
+
+  return <p>Number of exercises {total}</p>;
+};
+
+const App = () => {
+  const data = {
+    courseName: "Half Stack application development",
+    courseContent: [
+      { part: "Fundamentals of React", exercises: 10 },
+      { part: "Using props to pass data", exercises: 7 },
+      { part: "State of a component", exercises: 14 },
+    ],
+  };
+
+  return (
+    <>
+      <Header course={data.courseName} />
+      <Content content={data.courseContent} />
+      <Total inputNumber={data.courseContent} />
+    </>
+  );
+};
+
+export default App;
